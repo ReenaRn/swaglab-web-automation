@@ -7,14 +7,10 @@ Resource    ../Keywords/ShoppingCart/Products.robot
 Resource    ../Keywords/Checkout/Checkout.robot
 
 *** Test Cases ***
-Add product to cart
+Swaglab online shopping
     [Documentation]    Select a product and add product
     Given Login to swaglab application
-    and testcase id is TC03
-    When user add selected product to cart
+    And mapped testcase to TC03
+    When user add product to cart
     And checkout products
     Then verify order placed successfully
-
-
-
-

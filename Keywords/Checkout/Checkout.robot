@@ -18,9 +18,16 @@ ${POSTALCODE_ID}    id:postal-code
 ${PASSWORD}    secret_sauce
 ${LOGIN_BUTTON}    id:login-button
 ${TITLE_CART}    Your Cart
+${STATUS_PASS}    pass
+${STATUS_FAIL}    fail
 
 *** Keywords ***
 Checkout products
+    ${status}=  Run keyword And Return status    Checkout products from cart
+    Run keyword If    ${status}    report event    ${TEST_ID}    checkout products    Selected products checkout    ${STATUS_PASS}    True
+    ...    ELSE    report event    ${TEST_ID}    checkout products    Checkout failed    ${STATUS_FAIL}    False
+
+Checkout products from cart
     Click Element    xpath=//*[@id='shopping_cart_container']
     Element Should Contain    xpath=//*[@class='subheader']    ${TITLE_CART}
     Element Should Be Visible    xpath=//*[@class='btn_action checkout_button']
@@ -34,5 +41,10 @@ Checkout products
     Click Element    xpath=//*[@class='btn_action cart_button']
 
 Verify order placed successfully
+    ${status}=  Run keyword And Return status    Purchase products
+    Run keyword If    ${status}    report event    ${TEST_ID}    verify order placed successfully    Successfully purchased product    ${STATUS_PASS}    True
+    ...    ELSE    report event    ${TEST_ID}    verify order placed successfully    Purchase order failed    ${STATUS_FAIL}    False
+
+Purchase products
     Element Text Should Be    xpath=//*[@class='complete-header']    THANK YOU FOR YOUR ORDER
     Log    ${TEST_ID}
