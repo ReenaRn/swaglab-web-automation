@@ -19,7 +19,7 @@ ${STATUS_FAIL}    fail
 *** Keywords ***
 Default Suite Setup
     set web driver    ${BROWSER}
-    Open Browser    ${URL}    ${BROWSER}
+    Open Browser    ${URL}    headless${BROWSER}
 
 Default Suite Teardown
     Close Browser

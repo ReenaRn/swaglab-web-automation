@@ -10,7 +10,7 @@ Resource    ../Keywords/Checkout/Checkout.robot
 Swaglab online shopping
     [Documentation]    Select a product and add product
     Given Login to swaglab application
-    And mapped testcase to TC03
+    And mapped testcase to TC01
     When user add product to cart
     And checkout products
     Then verify order placed successfully

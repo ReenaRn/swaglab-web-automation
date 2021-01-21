@@ -1,0 +1,35 @@
+#image: python:3.8-alpine
+image: agubellini/robotframework-docker
+#image: ppodgorsek/robot-framework:latest
+
+before_script:
+  - python --version
+  - pip install -r requirements.txt  
+ 
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script:
+    - robot --variablefile Resources\configuration.yaml TESTS\PurchaseOrder.robot
+  artifacts:
+    when: always
+    paths:
+      - /builds/ReenaRobinson/swaglab-web-automation/*.html
+      
+pages:
+  stage: deploy
+  
+  dependencies:
+    - test
+
+  script:
+    - mkdir public
+    - mv /builds/ReenaRobinson/swaglab-web-automation/*.html public
+    - mv public/report.html public/index.html
+  artifacts:
+    when: always
+    paths:
+      - public
