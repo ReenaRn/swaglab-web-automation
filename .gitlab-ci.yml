@@ -13,7 +13,7 @@ stages:
 test:
   stage: test
   script:
-    - robot BROWSER:HeadlessChrome --variablefile Resources/configuration.yaml TESTS/PurchaseOrder.robot
+    - robot --variablefile Resources/configuration.yaml TESTS/PurchaseOrder.robot
   artifacts:
     when: always
     paths:
