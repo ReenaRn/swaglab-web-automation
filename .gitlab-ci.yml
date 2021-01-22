@@ -1,10 +1,8 @@
-#image: python:3.8-alpine
-image: agubellini/robotframework-docker
-#image: ppodgorsek/robot-framework:latest
+image: markhobson/maven-chrome
 
 before_script:
-  - python --version
-  - pip install -r requirements.txt  
+  - python3 --version
+  - pip3 install -r requirements.txt
  
 stages:
   - test
@@ -13,7 +11,7 @@ stages:
 test:
   stage: test
   script:
-    - robot -v BROWSER:HeadlessChrome --variablefile Resources/configuration.yaml TESTS/PurchaseOrder.robot
+    - python3 -m robot --variablefile Resources/configuration.yaml TESTS/PurchaseOrder.robot
   artifacts:
     when: always
     paths:
