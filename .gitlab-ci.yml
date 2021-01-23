@@ -14,7 +14,6 @@ before_script:
   - chmod 0755 /usr/bin/chromedriver
   - chmod 0755 /usr/bin/google-chrome
   - google-chrome --version
-  - chromedriver –version
   - pip install -r requirements.txt
  
 stages:
