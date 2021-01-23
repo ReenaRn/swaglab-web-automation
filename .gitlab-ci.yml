@@ -1,4 +1,4 @@
-image: markhobson/maven-chrome
+image: registry.gitlab.com/reenarobinson/swaglab-web-automation
 
 before_script:
   - python --version
