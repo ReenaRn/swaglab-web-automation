@@ -4,9 +4,17 @@ before_script:
   #- python --version
   #- pip install -r requirements.txt
   - CHROMEDRIVER_VERSION=`google-chrome --version | grep -iEo "[0-9\.]{10,20}"`
-  - echo $CHROMEDRIVER_VERSION
-  - export PATH=$PATH:/root/.wdm/drivers/chromedriver/linux64/$CHROMEDRIVER_VERSION
-  - echo $PATH
+  - wget --no-verbose -O /tmp/chromedriver_linux64.zip https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+  - unzip /tmp/chromedriver_linux64.zip -d /opt
+  - rm /tmp/chromedriver_linux64.zip
+  - mv /opt/chromedriver /opt/chromedriver-$CHROMEDRIVER_VERSION
+  - chmod 755 /opt/chromedriver-$CHROMEDRIVER_VERSION
+  - ln -fs /opt/chromedriver-$CHROMEDRIVER_VERSION /usr/bin/chromedriver
+  - export PATH=$PATH:/usr/bin/chromedriver
+  - chmod 0755 /usr/bin/chromedriver
+  - chmod 0755 /usr/bin/google-chrome
+  - google-chrome --version
+  - chromedriver –version
   - pip install -r requirements.txt
  
 stages:
