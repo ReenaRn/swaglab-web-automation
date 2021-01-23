@@ -23,7 +23,7 @@ stages:
 test:
   stage: test
   script:
-    - python -m robot --variablefile Resources/configuration.yaml TESTS/PurchaseOrder.robot
+    - python -m robot -v BROWSER:HeadlessChrome --variablefile Resources/configuration.yaml TESTS/PurchaseOrder.robot
   artifacts:
     when: always
     paths:
