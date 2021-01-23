@@ -5,7 +5,7 @@ Library           ../../Libraries/TestReporter.py
 
 *** Variables ***
 ${URL}    https://www.saucedemo.com/
-${BROWSER}    chrome
+#${BROWSER}    chrome
 ${USERNAME}    standard_user
 ${PASSWORD}    secret_sauce
 ${USERNAME_ID}    id:user-name
@@ -18,7 +18,7 @@ ${STATUS_FAIL}    fail
 
 *** Keywords ***
 Default Suite Setup
-    set web driver    ${BROWSER}
+    #set web driver    ${BROWSER}
     Open Browser    ${URL}    ${BROWSER}
 
 Default Suite Teardown
